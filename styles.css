@@ -59,6 +59,15 @@
   a:hover{text-decoration:underline;}
   .container{max-width:var(--maxw); margin:0 auto; padding:0 20px;}
   
+  /* Visually hidden but accessible */
+  .sr-only {
+    position:absolute !important;
+    width:1px; height:1px;
+    padding:0; margin:-1px;
+    overflow:hidden; clip:rect(0,0,0,0);
+    white-space:nowrap; border:0;
+  }
+  
   /* ===== NAV (hidden until ON) ===== */
   .nav{
     position:sticky; top:-1px; z-index:50;
@@ -83,7 +92,13 @@
   /* ===== HERO ===== */
   .hero{min-height:100svh; display:grid; place-items:center; padding: clamp(24px,2vw,48px);}
   .hero__inner{text-align:center;}
-  .brand{display:inline-flex; align-items:center; gap: clamp(16px,1.4vw,28px); z-index:1;}
+  .brand{
+    display:flex;
+    flex-direction: column;           /* logo on top, switch below */
+    align-items:center;
+    gap: clamp(12px, 1.2vw, 18px);
+    z-index:1;
+  }
   .brand__mark{font-weight:800; letter-spacing:.08em; font-size:clamp(26px,2.4vw,44px);}
   .headline{margin-top:14px;}
   .tagline{margin-top:8px; color:var(--muted);}
@@ -91,7 +106,7 @@
   .cue::after{content:""; position:absolute; left:50%; transform:translateX(-50%); bottom:-18px; width:2px; height:14px; border-radius:2px; background:currentColor; animation:drip 1.6s infinite;}
   @keyframes drip{0%{transform:translate(-50%,0);opacity:.9;}100%{transform:translate(-50%,10px);opacity:0;}}
   
-  /* ===== SWITCH (lozenge) — text alignment tuned ===== */
+  /* ===== SWITCH (lozenge) — centred, no labels ===== */
   .switch{
     appearance:none;border:0;background:transparent;padding:0;cursor:pointer;outline-offset:4px;
     display:inline-block; line-height:0;
@@ -103,7 +118,6 @@
     box-shadow: inset 0 0 0 2px var(--track-off-br);
     transition: background .4s ease, box-shadow .4s ease;
   }
-  /* knob */
   .switch__knob{
     position:absolute; inset:4px auto 4px 4px;
     width:38px; height:calc(100% - 8px); border-radius:999px;
@@ -111,22 +125,6 @@
     box-shadow: 0 1px 0 rgba(0,0,0,.2), 0 8px 18px -10px rgba(0,0,0,.35);
     transition: transform .45s cubic-bezier(.2,.8,.2,1), background .4s ease, box-shadow .3s ease;
   }
-  /* labels */
-  .switch__off, .switch__on{
-    position:absolute; top:50%; font-size:12px;
-    letter-spacing:.12em; text-transform:uppercase; user-select:none; pointer-events:none;
-  }
-  /* OFF centred in the track (never under the knob) */
-  .switch__off{
-    left:50%; transform: translate(-50%, -50%);
-    color:#112219; opacity:.8;
-  }
-  /* ON sits centred inside the knob when active */
-  .switch__on{
-    left:50%; transform: translate(-50%, -50%);
-    color:#f2f6f3; opacity:0; text-shadow: 0 1px 0 rgba(0,0,0,.25);
-  }
-  
   body.state-on .switch__track{
     background: var(--track-on-bg);
     box-shadow: inset 0 0 0 2px var(--track-on-br), 0 0 36px -8px rgba(34,255,132,.28);
@@ -136,28 +134,46 @@
     background: var(--knob-on);
     box-shadow: 0 0 22px -8px rgba(34,255,132,.35);
   }
-  body.state-on .switch__off{ opacity:0; }
-  /* move ON label into the knob centre on ON state */
-  body.state-on .switch__on{
-    left: auto; right: 23px;                 /* centre of 38px knob from the right edge */
-    transform: translate(50%, -50%);         /* centre within the knob */
-    opacity:.95;
-  }
+  /* focus ring */
   .switch:focus-visible .switch__track{ outline:2px solid rgba(34,255,132,.6); outline-offset:3px; }
   
-  /* ===== Sketchy nudge ===== */
+  /* Nudge positioned off to the side of the switch */
+  .switch-wrap{ position: relative; display: inline-block; }
   .nudge{
-    margin-left:10px; display:inline-flex; align-items:center; gap:6px;
-    opacity:.9; transform: rotate(-2deg); animation: nudgeFloat 3s ease-in-out infinite;
+    position: absolute;
+    left: calc(100% + 12px);          /* to the right of the switch */
+    top: 50%;
+    transform: translateY(-50%) rotate(-6deg);
+    display: inline-flex; align-items: center; gap: 6px;
+    opacity: .9;
+    animation: nudgeFloat 3s ease-in-out infinite;
   }
-  body.state-on .nudge{ opacity:0; transform: translateY(-6px) rotate(-2deg); pointer-events:none; transition: opacity .35s, transform .35s; }
+  body.state-on .nudge{
+    opacity:0; transform: translateY(-60%) rotate(-6deg);
+    pointer-events:none; transition: opacity .35s, transform .35s;
+  }
   .nudge__text{
-    font-size:13px; letter-spacing:.06em; padding:4px 8px; border-radius:8px;
-    border:1px dashed var(--border); background: var(--surface);
+    font-size: 13px; letter-spacing: .06em; padding: 4px 8px; border-radius: 8px;
+    border: 1px dashed var(--border); background: var(--surface);
     box-shadow: 2px 2px 0 rgba(0,0,0,.06);
   }
   .nudge__arrow{ display:block; filter: drop-shadow(0 1px 0 rgba(0,0,0,.25)); }
-  @keyframes nudgeFloat{ 0%,100%{ transform: rotate(-2deg) translateY(0); } 50%{ transform: rotate(-2deg) translateY(-2px); } }
+  @keyframes nudgeFloat{
+    0%,100%{ transform: translateY(-50%) rotate(-6deg); }
+    50%    { transform: translateY(calc(-50% - 2px)) rotate(-6deg); }
+  }
+  @media (max-width: 600px){
+    .nudge{
+      position: static;
+      transform: rotate(-6deg);
+      margin-top: 8px;
+      animation: nudgeFloatMobile 3s ease-in-out infinite;
+    }
+    @keyframes nudgeFloatMobile{
+      0%,100%{ transform: rotate(-6deg) translateY(0); }
+      50%    { transform: rotate(-6deg) translateY(-2px); }
+    }
+  }
   
   /* ===== OUTCOMES ===== */
   .outcomes{padding: clamp(28px,5vw,56px) 0;}
@@ -234,7 +250,6 @@
   @media (max-width: 980px){
     .work__grid, .cards, .steps{ grid-template-columns: 1fr; }
     .split__inner{ grid-template-columns: 1fr; }
-    .brand{ flex-direction: column; }
     .nav__links{ gap:12px; }
   }
   
