@@ -243,3 +243,66 @@
     .nav__links{ gap:12px; }
   }
   
+  /* ===== Mobile refinements (won't affect desktop) ===== */
+@media (max-width: 640px){
+
+    /* Layout + type */
+    .container{ padding: 0 16px; }
+    .hero{ min-height: 88svh; padding: 20px; }
+    .brand{ gap: 10px; }
+    .brand__mark{ font-size: 28px; }            /* PRVW size */
+    .headline{ font-size: 1.9rem; line-height: 1.15; margin-top: 10px; }
+    .tagline{ font-size: .98rem; }
+    .cue{ margin-top: 26px; }
+  
+    /* Switch (smaller, centered travel) */
+    .switch__track{
+      width: 112px;
+      height: 42px;
+    }
+    .switch__knob{
+      width: 34px;               /* knob shrinks with track */
+      height: calc(100% - 8px);
+    }
+    /* travel distance = track(112) - knob(34) - inset(8) = 70px */
+    body.state-on .switch__knob{
+      transform: translateX(70px);
+    }
+  
+    /* Nudge below the switch on mobile */
+    .nudge{
+      position: static;
+      transform: rotate(-6deg);
+      margin-top: 8px;
+      animation: nudgeFloatMobile 3s ease-in-out infinite;
+    }
+    @keyframes nudgeFloatMobile{
+      0%,100%{ transform: rotate(-6deg) translateY(0); }
+      50%    { transform: rotate(-6deg) translateY(-2px); }
+    }
+  
+    /* Nav: allow wrapping so it doesn't squeeze */
+    .nav__links{
+      flex-wrap: wrap;
+      gap: 10px;
+      justify-content: center;
+    }
+  
+    /* Sections: tighter vertical rhythm */
+    .outcomes, .work, .split, .approach, .team, .cta{
+      padding: 36px 0;
+    }
+  
+    /* Cards/grids already 1-col via existing queries, just soften visuals a bit */
+    .card, .work__card, .step{
+      padding: 16px;
+      border-radius: 14px;
+    }
+  
+    /* Team avatars a touch smaller */
+    .avatar{ width: 120px; }
+  
+    /* Footer spacing */
+    .footer{ padding: 28px 0 44px; }
+  }
+  
