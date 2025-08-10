@@ -6,7 +6,8 @@
   <title>PRVW — Tech, Data & AI</title>
   <meta name="description" content="We design and ship technology, data and AI outcomes — from strategy to shipped." />
   <link rel="icon" href="favicon.svg" type="image/svg+xml" />
-  <link rel="stylesheet" href="styles.css" />
+  <!-- cache-bust for GitHub Pages -->
+  <link rel="stylesheet" href="styles.css?v=4" />
 </head>
 <body class="state-off">
   <!-- Sticky nav (reveals after flip) -->
@@ -30,7 +31,6 @@
         <!-- Centered switch with sketchy nudge off to the side -->
         <div class="switch-wrap">
           <button class="switch" id="switch" aria-label="Toggle theme" aria-pressed="false">
-            <span class="sr-only">Toggle theme</span>
             <span class="switch__track">
               <span class="switch__knob" aria-hidden="true"></span>
             </span>
@@ -196,7 +196,7 @@
     </div>
   </footer>
 
-  <!-- Keep your existing main.js for toggle/scroll behaviour -->
-  <script src="main.js" defer></script>
+  <!-- cache-bust for GitHub Pages -->
+  <script src="main.js?v=4" defer></script>
 </body>
 </html>

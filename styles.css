@@ -59,15 +59,6 @@
   a:hover{text-decoration:underline;}
   .container{max-width:var(--maxw); margin:0 auto; padding:0 20px;}
   
-  /* Visually hidden but accessible */
-  .sr-only {
-    position:absolute !important;
-    width:1px; height:1px;
-    padding:0; margin:-1px;
-    overflow:hidden; clip:rect(0,0,0,0);
-    white-space:nowrap; border:0;
-  }
-  
   /* ===== NAV (hidden until ON) ===== */
   .nav{
     position:sticky; top:-1px; z-index:50;
@@ -134,7 +125,6 @@
     background: var(--knob-on);
     box-shadow: 0 0 22px -8px rgba(34,255,132,.35);
   }
-  /* focus ring */
   .switch:focus-visible .switch__track{ outline:2px solid rgba(34,255,132,.6); outline-offset:3px; }
   
   /* Nudge positioned off to the side of the switch */
