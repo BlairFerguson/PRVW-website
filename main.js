@@ -20,7 +20,7 @@ const io = new IntersectionObserver(
 );
 io.observe(hero);
 
-// Manual toggle
+// Manual toggle (+ clicking the nudge)
 if (switchBtn){
   switchBtn.addEventListener('click', () => setOn(!body.classList.contains('state-on')));
 }

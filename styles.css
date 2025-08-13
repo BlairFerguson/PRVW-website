@@ -8,7 +8,7 @@
   /* OFF (initial) */
   --bg: var(--frost);
   --fg: var(--pine);
-  --muted:#4a6663;     /* readable pine-60 */
+  --muted:#4a6663;
 
   /* ON (inverted) */
   --bg-on: var(--pine);
@@ -63,6 +63,15 @@ a{color:var(--accent); text-decoration:none;}
 a:hover{text-decoration:underline;}
 .container{max-width:var(--maxw); margin:0 auto; padding:0 20px;}
 
+/* ===== IMAGE LOGO VISIBILITY ===== */
+.logo{display:block;height:auto;}
+.logo--on{display:none;}
+.state-on .logo--on{display:block;}
+.state-on .logo--off{display:none;}
+.logo--nav{width:110px;}
+.logo--hero{width:clamp(140px, 16vw, 240px);}
+.logo--foot{width:110px;}
+
 /* ===== NAV ===== */
 .nav{
   position: sticky; top: -1px; z-index: 50;
@@ -73,7 +82,7 @@ a:hover{text-decoration:underline;}
   transition: opacity .35s, transform .35s, background .35s, border-color .35s;
 }
 .nav a{ color: inherit; }
-.nav__brand{ font-weight: 800; letter-spacing: .08em; }
+.nav__brand{ display:inline-flex; align-items:center; }
 .nav__links{ display: flex; gap: 18px; align-items: center; margin-left: 12px; }
 .btn{ display: inline-block; padding: 8px 14px; border-radius: 999px; border: 1px solid var(--border); }
 .btn--lg{ padding: 12px 18px; font-weight: 600; }
@@ -87,7 +96,7 @@ body.state-on .nav{
 .hero{min-height:100svh; display:grid; place-items:center; padding: clamp(24px,2vw,48px);}
 .hero__inner{text-align:center;}
 .brand{display:flex; flex-direction: column; align-items:center; gap: clamp(12px,1.2vw,18px); z-index:1;}
-.brand__mark{font-weight:800; letter-spacing:.08em; font-size:clamp(26px,2.4vw,44px);}
+.brand__mark{ display:flex; align-items:center; justify-content:center; }
 .headline{margin-top:14px;}
 .tagline{margin-top:8px; color:var(--muted);}
 .cue{margin-top:48px; opacity:.6; position:relative;}
@@ -129,7 +138,7 @@ body.state-on .switch__knob{
   display: inline-flex; align-items: center; gap: 6px;
   opacity: .9; animation: nudgeFloat 3s ease-in-out infinite;
 }
-body.state-on .nudge{ opacity:0; transform: translateY(-60%) rotate(-6deg); pointer-events:none; transition: opacity .35s, transform .35s; }
+.state-on .nudge{ opacity:0; transform: translateY(-60%) rotate(-6deg); pointer-events:none; transition: opacity .35s, transform .35s; }
 .nudge__text{ font-size: 13px; letter-spacing: .06em; padding: 4px 8px; border-radius: 8px; border: 1px dashed var(--border); background: var(--surface); box-shadow: 2px 2px 0 rgba(0,0,0,.06); }
 .nudge__arrow{ display:block; filter: drop-shadow(0 1px 0 rgba(0,0,0,.25)); }
 @keyframes nudgeFloat{ 0%,100%{ transform: translateY(-50%) rotate(-6deg); } 50%{ transform: translateY(calc(-50% - 2px)) rotate(-6deg); } }
@@ -154,7 +163,7 @@ body.state-on .nudge{ opacity:0; transform: translateY(-60%) rotate(-6deg); poin
 
 /* ===== SPLIT ===== */
 .split{padding: clamp(48px,7vw,96px) 0; opacity:0; transform:translateY(18px); transition:opacity .6s ease, transform .6s ease;}
-body.state-on .split{opacity:1; transform:none;}
+.state-on .split{opacity:1; transform:none;}
 .split__inner{display:grid; gap: clamp(28px,4vw,60px); grid-template-columns:repeat(2,minmax(0,1fr));}
 .list{list-style:none; margin:0; padding:0; display:grid; gap:10px;}
 .list li{padding:10px 0; border-bottom:1px solid var(--border);}
@@ -178,6 +187,7 @@ body.state-on .split{opacity:1; transform:none;}
 /* ===== FOOTER ===== */
 .footer{padding:40px 0 60px; border-top:1px solid var(--border);}
 .footer__inner{display:flex; justify-content:space-between; align-items:center; gap:12px; flex-wrap:wrap;}
+.footer__brand{display:flex; align-items:center; gap:10px;}
 .top{font-size:14px;}
 
 /* ===== Tablet ===== */
@@ -195,16 +205,17 @@ body.state-on .split{opacity:1; transform:none;}
 
   .container{ padding:0 16px; }
   .hero{ min-height: 88svh; padding: 20px; }
-  .brand{ gap:10px; }
-  .brand__mark{ font-size:28px; }
   .headline{ font-size:1.8rem; line-height:1.15; margin-top:10px; }
   .tagline{ font-size:.98rem; }
   .cue{ margin-top:26px; }
 
+  .logo--nav, .logo--foot{ width:100px; }
+  .logo--hero{ width:160px; }
+
   .switch__track{ width:96px; height:38px; }
   .switch__knob{ width:30px; height:calc(100% - 8px); }
-  body.state-on .switch__knob{ transform: translateX(58px); }
-  body.state-on .switch__track{ box-shadow: inset 0 0 0 2px var(--track-on-br), 0 0 22px -10px rgba(207,246,9,.28); }
+  .state-on .switch__knob{ transform: translateX(58px); }
+  .state-on .switch__track{ box-shadow: inset 0 0 0 2px var(--track-on-br), 0 0 22px -10px rgba(207,246,9,.28); }
 
   .nudge{ position: static; transform: rotate(-6deg); margin-top: 8px; animation: nudgeFloatMobile 3s ease-in-out infinite; }
   @keyframes nudgeFloatMobile{ 0%,100%{ transform: rotate(-6deg) translateY(0); } 50%{ transform: rotate(-6deg) translateY(-2px); } }
