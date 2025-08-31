@@ -1,26 +1,27 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>PRVW — Tech, Data & AI</title>
-  <meta name="description" content="We design and ship technology, data and AI outcomes — from strategy to shipped." />
-  <link rel="icon" href="favicon.svg" type="image/svg+xml" />
-  <link rel="stylesheet" href="styles.css?v=11" />
+<meta charset="utf-8"/>
+<meta content="width=device-width,initial-scale=1" name="viewport"/>
+<title>PRVW — Tech, Data &amp; AI</title>
+<meta name="description" content="We design and ship technology, data and AI outcomes — from strategy to shipped."/>
+<link rel="icon" href="favicon.svg" type="image/svg+xml"/>
+<link rel="stylesheet" href="styles.css?v=13"/>
 </head>
 <body class="state-off">
   <!-- Sticky nav (shows after flip) -->
   <nav class="nav" aria-label="Primary">
     <a href="#hero" class="nav__brand" aria-label="PRVW">
       <!-- Nav logo (light) -->
-      <img class="logo logo--nav logo--off" src="logo_trans_star.png" alt="PRVW logo" width="120" height="32" />
+      <img class="logo logo--nav logo--off" src="logo_trans_star.png" alt="PRVW logo" width="120" height="32"/>
       <!-- Nav logo (dark) -->
-      <img class="logo logo--nav logo--on"  src="logo_trans_invert.png" alt="" aria-hidden="true" width="120" height="32" />
+      <img class="logo logo--nav logo--on" src="logo_trans_invert.png" alt="" aria-hidden="true" width="120" height="32"/>
     </a>
     <div class="nav__links">
-      <a href="#work">Work</a>
-      <a href="#capabilities">Capabilities</a>
-      <a href="#approach">Approach</a>
+      <a href="#why">Why PRVW</a>
+      <a href="#what">What we do</a>
+      <a href="#pillars">5 Pillars</a>
+      <a href="#pathway">Pathway Pilot®</a>
       <a href="#team">Team</a>
       <a class="btn" href="mailto:info@prvw.ai?subject=Intro%20call">Let’s talk</a>
     </div>
@@ -33,9 +34,9 @@
         <!-- Center hero logo swaps by theme -->
         <div class="brand__mark">
           <!-- Light page (OFF) -->
-          <img class="logo logo--hero logo--off" src="logo_trans_star.png" alt="PRVW logo" />
+          <img class="logo logo--hero logo--off" src="logo_trans_star.png" alt="PRVW logo"/>
           <!-- Dark page (ON) -->
-          <img class="logo logo--hero logo--on"  src="logo_trans_invert_yellow.png" alt="" aria-hidden="true" />
+          <img class="logo logo--hero logo--on" src="logo_trans_invert_yellow.png" alt="" aria-hidden="true"/>
         </div>
 
         <div class="switch-wrap">
@@ -45,149 +46,144 @@
             </span>
           </button>
 
-          <!-- sketchy nudge -->
-          <div class="nudge" aria-hidden="true">
-            <svg class="nudge__arrow" viewBox="0 0 120 40" width="88" height="30" focusable="false">
-              <path d="M5,30 C30,10 60,10 90,18" fill="none" stroke="rgba(207,246,9,.85)" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
-              <path d="M88,12 l18,6 -18,6" fill="none" stroke="rgba(207,246,9,.85)" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+          <!-- nudge (visible on OFF, hides on ON) -->
+          <div class="nudge" id="nudge" aria-hidden="true">
+            <svg class="nudge__arrow" focusable="false" width="88" height="30" viewBox="0 0 120 40">
+              <path d="M5,30 C30,10 60,10 90,18" fill="none" stroke="rgba(207,246,9,.9)" stroke-linecap="round" stroke-linejoin="round" stroke-width="3"></path>
+              <path d="M88,12 l18,6 -18,6" fill="none" stroke="rgba(207,246,9,.9)" stroke-linecap="round" stroke-linejoin="round" stroke-width="3"></path>
             </svg>
-            <span class="nudge__text">try the switch</span>
+            <span class="nudge__card">try the switch</span>
           </div>
         </div>
       </div>
 
-      <h1 class="headline">Switch on compound gains from data & AI.</h1>
-      <p class="tagline">We take you from slideware to shipped — fast, safe, measurable.</p>
+      <!-- Headline & subtitle -->
+      <h1 class="headline">Diagnosing the future. Designing Intelligence. Delivering Growth.</h1>
+      <p class="tagline tagline--lg">
+        We are a pioneering data and AI diagnostic, consulting and technology firm with a mission to be the world’s most trusted guide for Enterprise through the AI age.
+      </p>
+
+      <!-- (Lozenges removed on request) -->
+
       <div class="cue" aria-hidden="true">Scroll</div>
     </div>
   </header>
 
   <main id="main">
-    <!-- Outcomes / fit signals -->
-    <section class="outcomes" id="outcomes" aria-label="Outcomes">
+    <!-- ORDER 1: Why PRVW -->
+    <section class="why" id="why" aria-label="Why PRVW">
       <div class="container">
-        <ul class="badges">
-          <li><strong>6–10 weeks</strong> to first shipped value</li>
-          <li><strong>10×</strong> faster time-to-insight</li>
-          <li><strong>95%+</strong> pipeline reliability</li>
-        </ul>
-        <div class="fit">
-          <h2>Signals we’re a fit</h2>
-          <ul>
-            <li>You want provable ROI, not experiments.</li>
-            <li>Your data/platform needs structure without slowing delivery.</li>
-            <li>You prefer small expert teams over armies of contractors.</li>
-          </ul>
-        </div>
-      </div>
-    </section>
-
-    <!-- Selected Work -->
-    <section class="work" id="work" aria-label="Selected Work">
-      <div class="container">
-        <h2>Selected Work</h2>
-        <div class="work__grid">
-          <a class="work__card" href="mailto:info@prvw.ai?subject=Case%20study%20—%20Insurer%20RAG%20triage">
-            <div class="work__art work__art--one"></div>
-            <h3>Insurer — claims triage with RAG</h3>
-            <p>Reduced handling time and leakage with retrieval-augmented workflows.</p>
-            <span class="link">Request the case study →</span>
-          </a>
-          <a class="work__card" href="mailto:info@prvw.ai?subject=Case%20study%20—%20Hospital%20diagnostics">
-            <div class="work__art work__art--two"></div>
-            <h3>Hospital — AI-assisted diagnostics</h3>
-            <p>End-to-end imaging + data pipelines; measurable accuracy lift.</p>
-            <span class="link">Request the case study →</span>
-          </a>
-          <a class="work__card" href="mailto:info@prvw.ai.com?subject=Case%20study%20—%20Trial%20insight%20engine">
-            <div class="work__art work__art--three"></div>
-            <h3>Pharma — trial insight engine</h3>
-            <p>Unified docs, queries and metrics for faster evidence generation.</p>
-            <span class="link">Request the case study →</span>
-          </a>
-        </div>
-      </div>
-    </section>
-
-    <!-- Capabilities & Industries -->
-    <section class="split" id="capabilities" aria-label="Capabilities and Industries">
-      <div class="container split__inner">
-        <div class="split__col">
-          <h2>Capabilities</h2>
-          <ul class="list">
-            <li>AI & GenAI strategy</li>
-            <li>Data platforms & lakehouse</li>
-            <li>ML engineering & MLOps</li>
-            <li>RAG, search & knowledge ops</li>
-            <li>Cloud architecture (AWS · Azure · GCP)</li>
-            <li>Data engineering & pipelines</li>
-            <li>Analytics & decision science</li>
-            <li>Security, privacy & governance</li>
-            <li>Design, prototyping & productisation</li>
-          </ul>
-        </div>
-        <div class="split__col">
-          <h2>Industries</h2>
-          <ul class="list">
-            <li>Healthcare & life sciences</li>
-            <li>Insurance & financial services</li>
-            <li>Pharma & clinical research</li>
-            <li>Public sector</li>
-            <li>Energy</li>
-            <li>Maritime & logistics</li>
-            <li>Retail & eCommerce</li>
-            <li>Manufacturing</li>
-          </ul>
-        </div>
-      </div>
-    </section>
-
-    <!-- Approach -->
-    <section class="approach" id="approach" aria-label="Approach">
-      <div class="container">
-        <h2>Switch-On in 60 Days</h2>
-        <div class="steps">
-          <article class="step">
-            <h3>Diagnose</h3>
-            <p>Weeks 0–2 — frame value, assess data & risks, shape the smallest shippable.</p>
+        <h2>Why PRVW?</h2>
+        <div class="cards cards--equal" style="grid-template-columns: repeat(2, 1fr);">
+          <article class="card">
+            <h3>Proprietary diagnostics &amp; benchmarks</h3>
+            <p>Our Pathway Pilot® framework and Algorithmic Business Thinking benchmark your maturity, surface structural gaps and map a staged path from experiments to scaled transformation.</p>
           </article>
-          <article class="step">
-            <h3>Design</h3>
-            <p>Weeks 2–6 — design the pipeline, build the model/flows, test with real users.</p>
+          <article class="card">
+            <h3>Proven value creation</h3>
+            <p>We engineer measurable growth using our 5 Pillars methodology—leading with value, securing the digital core, transforming talent, building trustworthy intelligence and driving continuous reinvention.</p>
           </article>
-          <article class="step">
-            <h3>Deliver</h3>
-            <p>Weeks 6–10 — productionise, measure outcomes, handover with runbooks.</p>
+          <article class="card">
+            <h3>End-to-end capability</h3>
+            <p>From C-suite alignment to build-run handover, we embed execution—operating model, governance and a Centre of Excellence that scales across functions and regions.</p>
+          </article>
+          <article class="card">
+            <h3>Agentic &amp; generative expertise</h3>
+            <p>We design a Secure Algorithmic Core™ where AI agents orchestrate workflows with guardrails for safety, privacy and compliance—turning advanced capability into commercial impact.</p>
           </article>
         </div>
       </div>
     </section>
 
-    <!-- Team -->
+    <!-- ORDER 2: What we do -->
+    <section class="what" id="what" aria-label="What we do">
+      <div class="container">
+        <h2>What we do</h2>
+        <div class="triple">
+          <div class="panel">
+            <h3>Diagnostics</h3>
+            <ul class="list">
+              <li>AI &amp; Data Readiness Diagnostics</li>
+              <li>Market &amp; Competitive Intelligence</li>
+              <li>Responsible AI &amp; Governance Frameworks</li>
+            </ul>
+          </div>
+          <div class="panel">
+            <h3>Consulting</h3>
+            <ul class="list">
+              <li>Go-to-Market &amp; Growth Acceleration</li>
+              <li>Operating Model &amp; Organisational Design</li>
+              <li>Capability &amp; Talent Transformation</li>
+              <li>Process Optimisation &amp; Automation</li>
+            </ul>
+          </div>
+          <div class="panel">
+            <h3>Technology</h3>
+            <ul class="list">
+              <li>Product &amp; Service Innovation</li>
+              <li>IP &amp; Proprietary Asset Development</li>
+              <li>Technology Strategy &amp; Stack Modernisation</li>
+              <li>Innovation Labs &amp; Continuous Reinvention</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ORDER 3: 5 Pillars -->
+    <section class="pillars" id="pillars" aria-label="5 Pillars of Growth">
+      <div class="container">
+        <h2>The PRVW 5 Pillars of Growth</h2>
+        <p class="subtitle">What makes us believe we’re uniquely placed to serve you…</p>
+        <div class="cards cards--equal">
+          <article class="card"><h3>Engineer value creation</h3><p>Diagnose across the value chain; quantify ROI in growth, efficiency &amp; enterprise impact.</p></article>
+          <article class="card"><h3>Develop a secure algorithmic core</h3><p>People, process, platforms &amp; protocols for a scalable, secure digital backbone.</p></article>
+          <article class="card"><h3>Build trustworthy intelligence</h3><p>Ethics by design; transparent governance, compliance &amp; risk controls.</p></article>
+          <article class="card"><h3>Empower human intelligence</h3><p>Augment teams with new roles, adaptive skills and ways of working.</p></article>
+          <article class="card"><h3>Drive continuous reimagination</h3><p>Innovation cycles as a habit—test, learn and scale.</p></article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ORDER 4: Pathway Pilot -->
+    <section class="approach" id="pathway" aria-label="PRVW Pathway Pilot">
+      <div class="container">
+        <h2>The PRVW Pathway Pilot® framework</h2>
+        <div class="steps steps--five">
+          <article class="step"><h3>The “Discovery”</h3><p>Clarify the challenge, decompose complexity, and align ambition.</p></article>
+          <article class="step"><h3>The “Immersion”</h3><p>Dive deep into data and operations to surface patterns and truths.</p></article>
+          <article class="step"><h3>The “Design”</h3><p>Abstract insights into strategies, decide priorities, and architect the path forward.</p></article>
+          <article class="step"><h3>The “Execution”</h3><p>Operationalise decisions into systems, algorithms, and scalable action.</p></article>
+          <article class="step"><h3 class="nowrap">The “Reimagination”</h3><p>Monitor, govern, and continuously reinvent through responsible AI and innovation loops.</p></article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ORDER 5: Team -->
     <section class="team" id="team" aria-label="Founding Team">
       <div class="container">
-        <h2>Founding Team</h2>
+        <h2>Team</h2>
         <div class="cards">
           <article class="card">
-            <img class="avatar" src="Blair.png" alt="Blair Ferguson" loading="lazy" />
+            <img class="avatar" src="Blair.png" alt="Blair Ferguson" loading="lazy"/>
             <h3>Blair Ferguson</h3>
-            <p>Data &amp; AI Platform Specialist</p>
+            <p>Partner, Diagnostics</p>
           </article>
           <article class="card">
-            <img class="avatar" src="john.png" alt="John Kirk" loading="lazy" />
+            <img class="avatar" src="john.png" alt="John Kirk" loading="lazy"/>
             <h3>John Kirk</h3>
-            <p>Strategy &amp; AI Pioneer</p>
+            <p>Partner, Consulting</p>
           </article>
           <article class="card">
-            <img class="avatar" src="Ewan.png" alt="Ewan Ferguson" loading="lazy" />
+            <img class="avatar" src="Ewan.png" alt="Ewan Ferguson" loading="lazy"/>
             <h3>Ewan Ferguson</h3>
-            <p>Tech &amp; Transformation AI Expert</p>
+            <p>Partner, Technology</p>
           </article>
         </div>
       </div>
     </section>
 
-    <!-- CTA -->
+    <!-- CTA (underline intentionally removed) -->
     <section class="cta" id="contact" aria-label="Contact">
       <div class="container cta__inner">
         <h2>Bring a problem. Leave with a plan.</h2>
@@ -200,15 +196,15 @@
     <div class="container footer__inner">
       <div class="footer__brand" aria-label="PRVW">
         <!-- Footer logo (light) -->
-        <img class="logo logo--foot logo--off" src="PRVW%20Losange%20logo%20Trans.png" alt="PRVW logo" width="110" height="30" />
+        <img class="logo logo--foot logo--off" src="PRVW%20Losange%20logo%20Trans.png" alt="PRVW logo" width="110" height="30"/>
         <!-- Footer logo (dark) -->
-        <img class="logo logo--foot logo--on"  src="logo_trans_invert.png" alt="" aria-hidden="true" width="110" height="30" />
+        <img class="logo logo--foot logo--on" src="logo_trans_invert.png" alt="" aria-hidden="true" width="110" height="30"/>
       </div>
       <p>© <span id="year"></span> PRVW. All rights reserved.</p>
       <a class="top" href="#hero">Back to top</a>
     </div>
   </footer>
 
-  <script src="main.js?v=11" defer></script>
+  <script defer src="main.js?v=13"></script>
 </body>
 </html>
