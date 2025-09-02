@@ -138,7 +138,8 @@ body.state-on .nav{
   box-shadow: 0 1px 0 rgba(0,0,0,.2), 0 8px 18px -10px rgba(0,0,0,.35);
   transition: transform .45s cubic-bezier(.2,.8,.2,1), background .4s ease, box-shadow .3s ease;
 }
-.switch-wrap{ position: relative; display: inline-block; z-index: 2;
+.switch-wrap{
+  position: relative; display: inline-block; z-index: 2;
   margin-top: clamp(12px, 2vw, 28px);
   margin-bottom: clamp(12px, 2vw, 28px);
 }
@@ -220,7 +221,11 @@ body.state-on .switch__knob{
 /* ===== PILLARS ===== */
 .pillars{padding: clamp(48px,7vw,96px) 0;}
 .pillars .cards{ grid-template-columns: repeat(5, minmax(0,1fr)); }
-.pillars .card h3{ color: var(--accent); }
+.pillars .card h3{
+  color: var(--accent);
+  /* FIX: prevent title overflow on narrow screens */
+  overflow-wrap:anywhere; word-break:normal; hyphens:auto;
+}
 .pillars .subtitle{ margin: 6px 0 14px; opacity:.85; }
 
 /* ===== TEAM ===== */
@@ -285,3 +290,14 @@ section h2{
   padding-bottom:4px;
 }
 .cta h2{ border-bottom:none; }
+
+/* ===== MOBILE PATCH (overrides to fix nudge placement & layering) ===== */
+@media (max-width: 640px){
+  .switch-wrap{ z-index: 5; }            /* keep label above nearby text */
+  .nudge{
+    position: static !important;         /* flow under the switch on mobile */
+    transform: none !important;
+    margin-top: 8px;
+  }
+  .brand{ margin-bottom: 34px; }         /* extra breathing room for hero title */
+}
