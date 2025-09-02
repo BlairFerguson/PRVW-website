@@ -356,3 +356,39 @@ section h2{
 @media (min-width: 390px) and (max-width: 640px){
   .pillars .card h3{ max-width: 22ch; }
 }
+
+/* === PILLARS: 2-column layout on phones === */
+@media (max-width: 640px){
+  /* Two columns with comfy gaps */
+  .pillars .cards{
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    column-gap: 12px;
+    row-gap: 14px;
+  }
+
+  /* Slightly roomier cards */
+  .pillars .card{
+    padding: 18px;
+    border-radius: 14px;
+  }
+
+  /* Let titles breathe; avoid mid-word breaks */
+  .pillars .card h3{
+    font-size: 1.1rem;
+    line-height: 1.18;
+    letter-spacing: -0.005em;
+    max-width: none;          /* wider now, so no need to cap */
+    margin-bottom: 8px;
+    margin-inline: 0;
+    text-wrap: balance;
+    word-break: normal;
+    overflow-wrap: normal;
+    hyphens: manual;
+  }
+}
+
+/* Safety: ultra-narrow screens fall back to 1 column */
+@media (max-width: 350px){
+  .pillars .cards{ grid-template-columns: 1fr; }
+}
+
