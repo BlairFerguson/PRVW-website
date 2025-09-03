@@ -392,3 +392,21 @@ section h2{
   .pillars .cards{ grid-template-columns: 1fr; }
 }
 
+/* === Fix headline centering on desktop === */
+.headline{
+  text-align: center;           /* ensure text itself is centred */
+  margin-left: auto;
+  margin-right: auto;
+  display: block;
+}
+
+/* On wide screens: allow wrapping + center alignment */
+@media (min-width: 980px){
+  .headline{
+    white-space: normal;        /* allow browser to break for balance */
+    text-wrap: balance;         /* balance lines (where supported) */
+    max-width: 60ch;            /* constrain width for symmetry */
+  }
+}
+
+
