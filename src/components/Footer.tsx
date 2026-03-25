@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { Linkedin, Twitter, Mail } from "lucide-react";
+import { Linkedin, Mail } from "lucide-react";
 import Logo from "./Logo";
 
 const Footer = () => {
@@ -42,15 +42,6 @@ const Footer = () => {
                 aria-label="LinkedIn"
               >
                 <Linkedin size={20} />
-              </a>
-              <a
-                href="https://twitter.com"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="p-2 rounded-full bg-secondary hover:bg-primary hover:text-primary-foreground transition-colors"
-                aria-label="Twitter"
-              >
-                <Twitter size={20} />
               </a>
               <a
                 href="mailto:info@prvw.ai"
