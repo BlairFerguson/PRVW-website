@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { Linkedin, Mail } from "lucide-react";
+import { Linkedin, Twitter, Mail } from "lucide-react";
 import Logo from "./Logo";
 
 const Footer = () => {
@@ -42,6 +42,15 @@ const Footer = () => {
                 aria-label="LinkedIn"
               >
                 <Linkedin size={20} />
+              </a>
+              <a
+                href="https://twitter.com"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="p-2 rounded-full bg-secondary hover:bg-primary hover:text-primary-foreground transition-colors"
+                aria-label="Twitter"
+              >
+                <Twitter size={20} />
               </a>
               <a
                 href="mailto:info@prvw.ai"
@@ -106,23 +115,13 @@ const Footer = () => {
           <p className="text-sm text-muted-foreground">
             © {currentYear} PRVW.AI. All rights reserved.
           </p>
-          <div className="flex items-center gap-5 text-sm text-muted-foreground">
+          <div className="flex gap-6 text-sm text-muted-foreground">
             <Link to="/privacy" className="hover:text-primary transition-colors">
               Privacy Policy
             </Link>
             <Link to="/terms" className="hover:text-primary transition-colors">
               Terms of Service
             </Link>
-            <a
-              href="https://www.linkedin.com/company/prvw-ai"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center gap-1 hover:text-primary transition-colors"
-              aria-label="PRVW.AI on LinkedIn"
-            >
-              <Linkedin size={15} />
-              <span>LinkedIn</span>
-            </a>
           </div>
         </div>
       </div>
