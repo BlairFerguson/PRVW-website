@@ -115,23 +115,13 @@ const Footer = () => {
           <p className="text-sm text-muted-foreground">
             © {currentYear} PRVW.AI. All rights reserved.
           </p>
-          <div className="flex items-center gap-5 text-sm text-muted-foreground">
+          <div className="flex gap-6 text-sm text-muted-foreground">
             <Link to="/privacy" className="hover:text-primary transition-colors">
               Privacy Policy
             </Link>
             <Link to="/terms" className="hover:text-primary transition-colors">
               Terms of Service
             </Link>
-            <a
-              href="https://www.linkedin.com/company/prvw-ai"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center gap-1 hover:text-primary transition-colors"
-              aria-label="PRVW.AI on LinkedIn"
-            >
-              <Linkedin size={15} />
-              <span>LinkedIn</span>
-            </a>
           </div>
         </div>
       </div>
