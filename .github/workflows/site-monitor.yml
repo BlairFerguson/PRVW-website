@@ -1,0 +1,136 @@
+name: Site Uptime Monitor
+
+on:
+  schedule:
+    - cron: "*/5 * * * *"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  issues: write
+
+jobs:
+  uptime-check:
+    runs-on: ubuntu-latest
+    env:
+      SITE_URL: ${{ vars.SITE_URL || 'https://prvw.ai' }}
+      MONITOR_ASSIGNEE: ${{ vars.MONITOR_ASSIGNEE }}
+
+    steps:
+      - name: Run health check
+        id: health
+        shell: bash
+        run: |
+          set -euo pipefail
+          CODE=$(curl -sS -L -o /tmp/site-response.txt -w "%{http_code}" --max-time 25 "$SITE_URL")
+          echo "http_code=$CODE" >> "$GITHUB_OUTPUT"
+
+          if [ "$CODE" -ge 200 ] && [ "$CODE" -lt 400 ]; then
+            echo "status=up" >> "$GITHUB_OUTPUT"
+          else
+            echo "status=down" >> "$GITHUB_OUTPUT"
+          fi
+
+      - name: Open or update outage issue
+        if: steps.health.outputs.status == 'down'
+        uses: actions/github-script@v7
+        env:
+          SITE_URL: ${{ env.SITE_URL }}
+          HTTP_CODE: ${{ steps.health.outputs.http_code }}
+          MONITOR_ASSIGNEE: ${{ env.MONITOR_ASSIGNEE }}
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          script: |
+            const owner = context.repo.owner;
+            const repo = context.repo.repo;
+            const title = `🚨 Uptime Alert: ${process.env.SITE_URL} is down`;
+            const labelName = "uptime-monitor";
+
+            const { data: labels } = await github.rest.issues.listLabelsOnRepo({ owner, repo });
+            if (!labels.find((l) => l.name === labelName)) {
+              await github.rest.issues.createLabel({
+                owner,
+                repo,
+                name: labelName,
+                color: "d73a4a",
+                description: "Automated uptime alerts"
+              });
+            }
+
+            const { data: openIssues } = await github.rest.issues.listForRepo({
+              owner,
+              repo,
+              state: "open",
+              labels: labelName,
+              per_page: 100
+            });
+
+            const existing = openIssues.find((issue) => issue.title === title);
+            const body = [
+              `The site health check failed.`,
+              ``,
+              `- URL: ${process.env.SITE_URL}`,
+              `- HTTP status: ${process.env.HTTP_CODE}`,
+              `- Time (UTC): ${new Date().toISOString()}`,
+              ``,
+              `This issue is managed automatically by .github/workflows/site-monitor.yml.`
+            ].join("\n");
+
+            if (existing) {
+              await github.rest.issues.createComment({
+                owner,
+                repo,
+                issue_number: existing.number,
+                body
+              });
+            } else {
+              const assignees = process.env.MONITOR_ASSIGNEE ? [process.env.MONITOR_ASSIGNEE] : [];
+              await github.rest.issues.create({
+                owner,
+                repo,
+                title,
+                body,
+                labels: [labelName],
+                assignees
+              });
+            }
+
+      - name: Resolve outage issue when site recovers
+        if: steps.health.outputs.status == 'up'
+        uses: actions/github-script@v7
+        env:
+          SITE_URL: ${{ env.SITE_URL }}
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          script: |
+            const owner = context.repo.owner;
+            const repo = context.repo.repo;
+            const title = `🚨 Uptime Alert: ${process.env.SITE_URL} is down`;
+            const labelName = "uptime-monitor";
+
+            const { data: openIssues } = await github.rest.issues.listForRepo({
+              owner,
+              repo,
+              state: "open",
+              labels: labelName,
+              per_page: 100
+            });
+
+            const existing = openIssues.find((issue) => issue.title === title);
+            if (!existing) {
+              return;
+            }
+
+            await github.rest.issues.createComment({
+              owner,
+              repo,
+              issue_number: existing.number,
+              body: `✅ Recovery detected at ${new Date().toISOString()} UTC for ${process.env.SITE_URL}. Closing alert.`
+            });
+
+            await github.rest.issues.update({
+              owner,
+              repo,
+              issue_number: existing.number,
+              state: "closed"
+            });
